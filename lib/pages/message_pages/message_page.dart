@@ -52,7 +52,7 @@ class _MessagePageState extends State<MessagePage> {
 
     return KeyboardListenerFlow(
       onEnterPressed: () {
-        if (_sendController.text.length >= 1) {
+        if (_sendController.text.isNotEmpty) {
           for (String char in _sendController.text.split("")) {
             if (char != " ") {
               _send();

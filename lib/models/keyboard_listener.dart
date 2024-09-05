@@ -6,11 +6,13 @@ import 'package:flutter/services.dart';
 class KeyboardListenerFlow extends StatefulWidget {
   const KeyboardListenerFlow({
     super.key,
-    required this.onEnterPressed,
+    this.onEnterPressed,
+    this.onAnyKeyPressed,
     required this.child,
   });
 
-  final VoidCallback onEnterPressed;
+  final VoidCallback? onEnterPressed;
+  final VoidCallback? onAnyKeyPressed;
   final Widget child;
 
   @override
@@ -37,9 +39,15 @@ class _KeyboardListenerFlowState extends State<KeyboardListenerFlow> {
 
   void _keyboardCallback(RawKeyEvent keyEvent) {
     if (keyEvent is! RawKeyDownEvent) return;
+    if (widget.onAnyKeyPressed != null) {
+      widget.onAnyKeyPressed!();
+    }
+    ;
 
     if (keyEvent.data.logicalKey == LogicalKeyboardKey.enter) {
-      widget.onEnterPressed();
+      if (widget.onEnterPressed != null) {
+        widget.onEnterPressed!();
+      }
     }
   }
 }

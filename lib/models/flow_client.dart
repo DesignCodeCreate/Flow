@@ -47,11 +47,12 @@ class FlowClient extends Client {
       throw Exception(error);
     }
   }
-  
 
   logoutFlow(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("token");
+    prefs.remove("username");
+    prefs.remove("password");
+
     await client?.logout();
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (_) => const LoginPage()));
