@@ -1,3 +1,3 @@
-# flow
+# Flow
 
-A new Flutter project.
+A matrix client written in flutter
